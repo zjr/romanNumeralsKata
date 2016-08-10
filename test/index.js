@@ -2,8 +2,10 @@
 
 const assert = require('chai').assert;
 
-suite('test tests', () => {
-  test('tests should test tests', () => {
-    assert.equal(1, 1);
-  })
+const convert = require('../src');
+
+suite('arabicToNumeral', () => {
+  test('should return numeral I when supplied with arabic 1', () => {
+    assert.equal(convert.arabicToNumeral(1), 'I');
+  });
 });
