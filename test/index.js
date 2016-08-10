@@ -10,5 +10,8 @@ suite('arabicToNumeral', () => {
   });
   test('should return numeral III when supplied with arabic 3', () => {
     assert.equal(convert.arabicToNumeral(3), 'III');
-  })
+  });
+  test('should return numeral IV when supplied with arabic 4', () => {
+    assert.equal(convert.arabicToNumeral(4), 'IV');
+  });
 });
