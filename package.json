@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/zjr/romanNumeralsKata#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "mocha": "^3.0.2"
   }
 }
