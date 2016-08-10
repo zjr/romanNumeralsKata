@@ -28,6 +28,29 @@ suite('arabicToNumeral', () => {
   suite('handle double digits', () => {
     test('should return numeral XX when given arabic 20.', () => {
       assert.equal(convert.arabicToNumeral(20), 'XX')
-    })
-  })
+    });
+    test('should return numeral XXI when given arabic 21.', () => {
+      assert.equal(convert.arabicToNumeral(21), 'XXI')
+    });
+    test('should return numeral XXIV when given arabic 24.', () => {
+      assert.equal(convert.arabicToNumeral(24), 'XXIV')
+    });
+    test('should return numeral XXXV when given arabic 35.', () => {
+      assert.equal(convert.arabicToNumeral(35), 'XXXV')
+    });
+    test('should return numeral XLVIII when given arabic 48.', () => {
+      assert.equal(convert.arabicToNumeral(48), 'XLVIII')
+    });
+    test('should return numeral LIX when given arabic 59.', () => {
+      assert.equal(convert.arabicToNumeral(59), 'LIX')
+    });
+  });
+  suite('handle some quad digit cases', () => {
+    test('should return numeral MLXVI for arabic 1066', () => {
+      assert.equal(convert.arabicToNumeral(1066), 'MLXVI');
+    });
+    test('should return numeral MCMLXXXIX for arabic 1989', () => {
+      assert.equal(convert.arabicToNumeral(1989), 'MCMLXXXIX');
+    });
+  });
 });
