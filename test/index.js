@@ -20,4 +20,7 @@ suite('arabicToNumeral', () => {
   test('should return numeral VIII when supplied with arabic 8', () => {
     assert.equal(convert.arabicToNumeral(8), 'VIII');
   });
+  test('should return numeral IX when supplied with arabic 9', () => {
+    assert.equal(convert.arabicToNumeral(9), 'IX');
+  });
 });

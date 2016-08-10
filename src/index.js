@@ -3,6 +3,10 @@
 module.exports = {
   arabicToNumeral(int) {
     let str = '';
+    if (int === 9) {
+      str = 'IX';
+      int = 0;
+    }
     if (int / 5 >= 1) {
       str += 'V';
       int -= 5;
