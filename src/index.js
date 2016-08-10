@@ -27,8 +27,14 @@ const getNumeralsForPlace = (int, placeIdx = 0) => {
   return str;
 };
 
+const getNumeralArray = (idx, int, ...ints) => {
+  if (int === undefined) { return []; }
+  return [getNumeralsForPlace(int, idx), ...getNumeralArray(++idx, ...ints)];
+};
+
 module.exports = {
   arabicToNumeral(int) {
-    return getNumeralsForPlace(int)
+    const ints = int.toString().split('').map(x => parseInt(x)).reverse();
+    return getNumeralArray(0, ...ints).reverse().join('');
   }
 };
