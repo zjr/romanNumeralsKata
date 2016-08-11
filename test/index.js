@@ -54,3 +54,9 @@ suite('arabicToNumeral', () => {
     });
   });
 });
+
+suite('numeralToArabic', () => {
+  test('should return arabic 1 when given numeral I', () => {
+    assert.equal(convert.numeralToArabic('I'), 1);
+  })
+});

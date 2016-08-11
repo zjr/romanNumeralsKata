@@ -36,5 +36,8 @@ module.exports = {
   arabicToNumeral(int) {
     const ints = int.toString().split('').map(x => parseInt(x)).reverse();
     return getNumeralArray(0, ...ints).reverse().join('');
+  },
+  numeralToArabic() {
+    return 1;
   }
 };
