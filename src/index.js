@@ -32,22 +32,6 @@ const getNumeralArray = (idx, int, ...ints) => {
   return [getNumeralsForPlace(int, idx), ...getNumeralArray(++idx, ...ints)];
 };
 
-const getNumeralInfo = numeral => {
-  const numeralPos = numerals.indexOf(numeral) / 2;
-  const trailingZeros = Math.floor(numeralPos);
-  const isHalfStep = (numeralPos - trailingZeros) === 0.5;
-
-  let intStr = isHalfStep ? 5 : 1;
-
-  for (let x = 0; x < trailingZeros; x++) {
-    intStr += '0';
-  }
-
-  const value = parseInt(intStr, 10);
-
-  return { value, trailingZeros };
-};
-
 const determineChuckCombo = (arr, next) => {
   const last = arr[0][0];
   if (!last) {
@@ -66,6 +50,22 @@ const determineChuckCombo = (arr, next) => {
     arr[0].unshift(next);
   }
   return arr;
+};
+
+const getNumeralInfo = numeral => {
+  const numeralPos = numerals.indexOf(numeral) / 2;
+  const trailingZeros = Math.floor(numeralPos);
+  const isHalfStep = (numeralPos - trailingZeros) === 0.5;
+
+  let intStr = isHalfStep ? 5 : 1;
+
+  for (let x = 0; x < trailingZeros; x++) {
+    intStr += '0';
+  }
+
+  const value = parseInt(intStr, 10);
+
+  return { value, trailingZeros };
 };
 
 const splitNumeralChunksAndAdd = numeral => {
