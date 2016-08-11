@@ -32,19 +32,50 @@ const getNumeralArray = (idx, int, ...ints) => {
   return [getNumeralsForPlace(int, idx), ...getNumeralArray(++idx, ...ints)];
 };
 
-const getNumeralValue = numeral => {
+const getNumeralInfo = numeral => {
   const numeralPos = numerals.indexOf(numeral) / 2;
-  let trailingZeros = Math.floor(numeralPos);
+  const trailingZeros = Math.floor(numeralPos);
   const isHalfStep = (numeralPos - trailingZeros) === 0.5;
 
   let intStr = isHalfStep ? 5 : 1;
 
-  while (trailingZeros > 0) {
+  for (let x = 0; x < trailingZeros; x++) {
     intStr += '0';
-    trailingZeros--;
   }
 
-  return parseInt(intStr, 10);
+  const value = parseInt(intStr, 10);
+
+  return { value, trailingZeros };
+};
+
+const determineChuckCombo = (arr, next) => {
+  const last = arr[0][0];
+  if (!last) {
+    arr[0].unshift(next);
+    return arr;
+  }
+  if (last.trailingZeros > next.trailingZeros) {
+    // end of sequence
+    arr.unshift([next]);
+  } else if (last.trailingZeros < next.trailingZeros) {
+    // 4 or 9, end of sequence
+    arr[0] = [{ value: next.value - last.value }];
+    arr.unshift([]);
+  } else {
+    // same trails, add together
+    arr[0].unshift(next);
+  }
+  return arr;
+};
+
+const splitNumeralChunksAndAdd = numeral => {
+  return numeral
+    .split('')
+    .map(getNumeralInfo)
+    .reduce(determineChuckCombo, [[]])
+    .reverse()
+    .map(x => x.reduce((prev, next) => prev + next.value, 0))
+    .reduce((prev, next) => prev + next);
 };
 
 module.exports = {
@@ -53,6 +84,6 @@ module.exports = {
     return getNumeralArray(0, ...ints).reverse().join('');
   },
   numeralToArabic(numeral) {
-    return getNumeralValue(numeral);
+    return splitNumeralChunksAndAdd(numeral);
   }
 };

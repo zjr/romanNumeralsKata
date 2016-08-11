@@ -70,4 +70,15 @@ suite('numeralToArabic', () => {
       assert.equal(convert.numeralToArabic('M'), 1000);
     })
   });
+  suite('should handle large numerals', () => {
+    test('should return arabic 1066 when given numeral MLXVI', () => {
+      assert.equal(convert.numeralToArabic('MLXVI'), 1066);
+    });
+    test('should return arabic 1989 when given numeral MCMLXXXIX', () => {
+      assert.equal(convert.numeralToArabic('MCMLXXXIX'), 1989);
+    });
+    test('should return arabic 2016 when given numeral MMXVI', () => {
+      assert.equal(convert.numeralToArabic('MMXVI'), 2016);
+    })
+  });
 });
