@@ -32,12 +32,27 @@ const getNumeralArray = (idx, int, ...ints) => {
   return [getNumeralsForPlace(int, idx), ...getNumeralArray(++idx, ...ints)];
 };
 
+const getNumeralValue = numeral => {
+  const numeralPos = numerals.indexOf(numeral) / 2;
+  let trailingZeros = Math.floor(numeralPos);
+  const isHalfStep = (numeralPos - trailingZeros) === 0.5;
+
+  let intStr = isHalfStep ? 5 : 1;
+
+  while (trailingZeros > 0) {
+    intStr += '0';
+    trailingZeros--;
+  }
+
+  return parseInt(intStr, 10);
+};
+
 module.exports = {
   arabicToNumeral(int) {
     const ints = int.toString().split('').map(x => parseInt(x)).reverse();
     return getNumeralArray(0, ...ints).reverse().join('');
   },
-  numeralToArabic() {
-    return 1;
+  numeralToArabic(numeral) {
+    return getNumeralValue(numeral);
   }
 };

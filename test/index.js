@@ -56,7 +56,18 @@ suite('arabicToNumeral', () => {
 });
 
 suite('numeralToArabic', () => {
-  test('should return arabic 1 when given numeral I', () => {
-    assert.equal(convert.numeralToArabic('I'), 1);
-  })
+  suite('handle single numerals', () => {
+    test('should return arabic 1 when given numeral I', () => {
+      assert.equal(convert.numeralToArabic('I'), 1);
+    });
+    test('should return arabic 5 when given numeral V', () => {
+      assert.equal(convert.numeralToArabic('V'), 5);
+    });
+    test('should return arabic 10 when given numeral X', () => {
+      assert.equal(convert.numeralToArabic('X'), 10);
+    });
+    test('should return arabic 1000 when given numeral M', () => {
+      assert.equal(convert.numeralToArabic('M'), 1000);
+    })
+  });
 });
